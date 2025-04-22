@@ -45,13 +45,8 @@ class Library():
         fetches all ID Numbers from that column, adds a new row in the table if the ID number 
         that was inputted does not exist yet in the table.
         ''' 
-        # the '_' is there because the row_factory function requires 2 arguments
         c = self.connection.cursor() 
-        # I don't know why but I have to create a separate 'c' variable even though 
-        # I already defined a cursor variable inside the constructor,
-        # because if I don't, instead of the list being ['1234567890', '0987654321', '098808808']
-        # it will be something like [('1234567890',), ('0987654321',), ('098808808',)], 
-        # the program cannot read the ID numbers inside the tuple
+        # list comprehension instead of using row factory, stack overflow be giving bad advices lol
         stored_idNos = [row[0] for row in c.execute("select Book_ID from books").fetchall()]
 
         while True: # loop breaks when a book is successfully added
