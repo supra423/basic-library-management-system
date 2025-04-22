@@ -59,9 +59,11 @@ class Library():
             except Exception:
                 print("Error! Please try again!")
                 break
-
-            if amount_of_books > 0: 
-            # checks first if amount of books inputted by the user is less than 0 before checking if ID number is in database
+            
+            if title and author and idNo and amount_of_books > 0: 
+            # checks if title, author, and idNo are not an empty string
+            # and checks if amount_of_books is greater than 0 or not an
+            # empty string
                 if idNo not in stored_idNos:
 
                     try:
@@ -82,7 +84,7 @@ class Library():
                     print(f'Book "{title}" added successfully!\n')
                     break
             else:
-                print("Amount of book(s) must be at least 1!")
+                print("Error! Please try again!")
 
     def remove_book(self): 
         ' deletes all copies of a book from the database by specifying its ID number '
